@@ -1,0 +1,45 @@
+{
+  "name": "strapi-playground",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "start:dev": "ENV_PATH=.env.development strapi develop",
+    "build:dev": "ENV_PATH=.env.development strapi build",
+    "start:prod": "ENV_PATH=.env.production NODE_ENV=production strapi start",
+    "build:prod": "ENV_PATH=.env.production NODE_ENV=production strapi build",
+    "strapi": "strapi",
+    "nuke": "rm -r node_modules; for d in node_modules; do echo $d; rm -r $d; done",
+    "build:docker-image": "docker build -t strapi-playground-prod:v1.0 -f Dockerfile .",
+    "build:docker-dev-image": "docker build -t strapi-playground-dev:v1.0 -f Dockerfile.dev .",
+    "dev:docker": "docker compose -f docker-compose-development.yaml --env-file .env.development up -d",
+    "prod:docker": "docker compose -f docker-compose.yaml --env-file .env.production up -d"
+  },
+  "dependencies": {
+    "@strapi/plugin-graphql": "^4.22.0",
+    "@strapi/plugin-i18n": "4.22.0",
+    "@strapi/plugin-seo": "^1.9.8",
+    "@strapi/plugin-users-permissions": "4.22.0",
+    "@strapi/provider-upload-local": "4.22.0",
+    "@strapi/strapi": "4.22.0",
+    "pg": "8.8.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "5.3.4",
+    "strapi-plugin-local-image-sharp": "^1.7.0",
+    "strapi-plugin-migrations": "^1.0.5",
+    "strapi-plugin-preview-button": "^2.2.2",
+    "strapi-plugin-transformer": "^3.1.2",
+    "styled-components": "5.3.3"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "0355bba6-96a0-42c4-81cd-3c6cccaf25fa"
+  },
+  "engines": {
+    "node": ">=18.x.x <=20.x.x"
+  },
+  "license": "MIT"
+}

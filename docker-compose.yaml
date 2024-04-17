@@ -1,0 +1,60 @@
+version: "3.0"
+
+services:
+  prod:
+      # IMPORTNAT: Watch where you are: docker compose command is started in repo root,
+      # so you need to make sure you are in root for all turbo repo stuff (RUN Turbo prune ... etc.  see Dockerfile for details)
+      # and for all strapi stuff in this directory (./api/cms for .env., Dockerfile, etc.)
+      # env_file: .env.production
+      build:
+        # here is the trick: running docker compose from monorepo root,
+        # you need to set the context  back to root (this docker-compose.yaml is under ./api/cms, context: ../../. - thats where the turbo repo stuff runs)
+        # and the reference to Dockerfile for strapi back to this dicrectory (dockerfile: ./api/cmas/Dockerfile)
+        context: . 
+        dockerfile: ./Dockerfile
+      container_name: strapi-playground-prod_v1.0
+      restart: unless-stopped
+      environment:
+        NODE_ENV: production
+        DATABASE_CLIENT: postgres
+        DATABASE_HOST: db_prod
+        DATABASE_PORT: 5432
+        DATABASE_NAME: ${DATABASE_NAME}
+        DATABASE_USERNAME: ${DATABASE_USERNAME}
+        DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      volumes:
+        - ./config:/usr/src/app/config
+        - ./src:/usr/src/app/src
+        - ./package.json:/usr/src/app/package.json
+        - ./.env.production:/usr/src/app/.env.production
+        - ./public/uploads:/usr/src/app/public/uploads
+      ports:
+        - 1337:1337
+      networks:
+      - strapi_playground
+      depends_on:
+        - db_prod
+      command: pnpm start:prod
+  db_prod:
+    container_name: strapi-playground-db-prod
+    image: 'postgres:15.1'
+    env_file: .env.production
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    volumes:
+      - db_data_prod:/var/lib/postgresql/data/
+      #- ./database/db_strapi_latest.sql.gz:/docker-entrypoint-initdb.d/db_strapi_latest.sql.gz
+    ports:
+      - "5432:5432"
+    networks:
+      - strapi_playground
+
+volumes:
+  db_data_prod:
+
+networks:
+  strapi_playground:
+    name: Strapi_Playground
+    driver: bridge
