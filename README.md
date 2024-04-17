@@ -1,7 +1,9 @@
 # 🚀 Getting started with Strapi
 
 Dockerized Playground for Strapi to test features, plugins etc.
-You will find to versions
+You will find two versions
+
+Disclaimer: using pnpm as package manager although not officially supported by strapi. Please see `.npmrc` for config (shamefully-hoisting is enabled).
 
 ## development
 
