@@ -2,7 +2,7 @@
   "name": "strapi-playground",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Strapi Playground for testing features",
   "scripts": {
     "start:dev": "ENV_PATH=.env.development strapi develop",
     "build:dev": "ENV_PATH=.env.development strapi build",
@@ -16,15 +16,15 @@
     "prod:docker": "docker compose -f docker-compose.yaml --env-file .env.production up -d"
   },
   "dependencies": {
-    "@strapi/plugin-graphql": "^4.22.0",
-    "@strapi/plugin-i18n": "4.22.0",
+    "@strapi/plugin-graphql": "^4.23.1",
+    "@strapi/plugin-i18n": "4.23.1",
     "@strapi/plugin-seo": "^1.9.8",
-    "@strapi/plugin-users-permissions": "4.22.0",
-    "@strapi/provider-upload-local": "4.22.0",
-    "@strapi/strapi": "4.22.0",
+    "@strapi/plugin-users-permissions": "4.23.1",
+    "@strapi/provider-upload-local": "4.23.1",
+    "@strapi/strapi": "4.23.1",
     "pg": "8.8.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "5.3.4",
     "strapi-plugin-local-image-sharp": "^1.7.0",
     "strapi-plugin-migrations": "^1.0.5",
@@ -32,8 +32,15 @@
     "strapi-plugin-transformer": "^3.1.2",
     "styled-components": "5.3.3"
   },
+  "resolutions": {
+    "@strapi/strapi": "4.23.1",
+    "@strapi/admin": "4.23.1",
+    "@strapi/design-system": "1.16.0",
+    "@uiw/react-codemirror": "4.21.25",
+    "codemirror": "5.65.16"
+  },
   "author": {
-    "name": "A Strapi developer"
+    "name": "mrpitch"
   },
   "strapi": {
     "uuid": "0355bba6-96a0-42c4-81cd-3c6cccaf25fa"
