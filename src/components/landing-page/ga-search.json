@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_landing_page_ga_searches",
+  "info": {
+    "displayName": "GA Search",
+    "icon": "search"
+  },
+  "options": {},
+  "attributes": {
+    "Headline": {
+      "type": "string"
+    },
+    "Copy": {
+      "type": "text"
+    },
+    "Ctas": {
+      "displayName": "CTAs",
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.cta"
+    }
+  }
+}
