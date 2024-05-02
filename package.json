@@ -1,7 +1,7 @@
 {
   "name": "strapi-playground",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Strapi Playground for testing features",
   "scripts": {
     "start:dev": "ENV_PATH=.env.development strapi develop",
