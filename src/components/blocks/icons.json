@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_atoms_icons",
+  "info": {
+    "displayName": "Icons",
+    "icon": "brush",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Label": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "string"
+    },
+    "SVG": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Direction": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "before",
+        "after"
+      ],
+      "default": "default"
+    }
+  }
+}
