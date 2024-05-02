@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "health_departments",
+  "info": {
+    "singularName": "health-department",
+    "pluralName": "health-departments",
+    "displayName": "Health Department"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Street": {
+      "type": "string"
+    },
+    "City": {
+      "type": "string"
+    },
+    "ZIPCode": {
+      "type": "integer"
+    },
+    "Contact": {
+      "type": "email"
+    },
+    "Phone": {
+      "type": "integer"
+    },
+    "Fax": {
+      "type": "integer"
+    }
+  }
+}

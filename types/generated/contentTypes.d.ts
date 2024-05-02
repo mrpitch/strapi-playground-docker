@@ -850,6 +850,43 @@ export interface ApiGlobalArticleGlobalArticle extends Schema.CollectionType {
   };
 }
 
+export interface ApiHealthDepartmentHealthDepartment
+  extends Schema.CollectionType {
+  collectionName: 'health_departments';
+  info: {
+    singularName: 'health-department';
+    pluralName: 'health-departments';
+    displayName: 'Health Department';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Street: Attribute.String;
+    City: Attribute.String;
+    ZIPCode: Attribute.Integer;
+    Contact: Attribute.Email;
+    Phone: Attribute.Integer;
+    Fax: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::health-department.health-department',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::health-department.health-department',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLandingPageLandingPage extends Schema.CollectionType {
   collectionName: 'landing_pages';
   info: {
@@ -910,6 +947,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::article.article': ApiArticleArticle;
       'api::global-article.global-article': ApiGlobalArticleGlobalArticle;
+      'api::health-department.health-department': ApiHealthDepartmentHealthDepartment;
       'api::landing-page.landing-page': ApiLandingPageLandingPage;
     }
   }

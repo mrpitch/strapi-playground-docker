@@ -1,4 +1,4 @@
-# 🚀 Getting started with Strapi
+# 🚀 Getting started
 
 Dockerized Playground for Strapi to test features, plugins etc.
 You will find two versions. Both versions using postgres docker image in docker-compose.
