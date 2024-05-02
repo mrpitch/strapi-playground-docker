@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_landing_page_button_teasers",
+  "info": {
+    "displayName": "Button Teaser",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Headline": {
+      "type": "string"
+    },
+    "Subline": {
+      "type": "string"
+    },
+    "ButtonCard": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.button-cards"
+    }
+  }
+}
