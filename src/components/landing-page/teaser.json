@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_landing_page_teasers",
+  "info": {
+    "displayName": "Teaser",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "Headline": {
+      "type": "string"
+    },
+    "ContentCard": {
+      "displayName": "Content Card",
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.content-card"
+    }
+  }
+}
