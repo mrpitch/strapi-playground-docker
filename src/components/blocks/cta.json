@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_blocks_ctas",
+  "info": {
+    "displayName": "Cta",
+    "icon": "arrowRight"
+  },
+  "options": {},
+  "attributes": {
+    "Label": {
+      "type": "string"
+    },
+    "Href": {
+      "type": "string"
+    },
+    "Type": {
+      "type": "enumeration",
+      "enum": [
+        "Primary Button",
+        "Secondary Button",
+        "Outline",
+        "Link"
+      ]
+    },
+    "Icon": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.icons"
+    }
+  }
+}
