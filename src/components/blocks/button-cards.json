@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_landing_page_button_cards",
+  "info": {
+    "displayName": "Button Card",
+    "icon": "arrowRight",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Label": {
+      "type": "string"
+    },
+    "Icon": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.icons"
+    },
+    "Url": {
+      "type": "string"
+    }
+  }
+}

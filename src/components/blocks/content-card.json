@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_landing_page_content_cards",
+  "info": {
+    "displayName": "Content Card",
+    "icon": "layout",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Headline": {
+      "type": "string"
+    },
+    "Icon": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.icons"
+    },
+    "Copy": {
+      "type": "text"
+    }
+  }
+}
