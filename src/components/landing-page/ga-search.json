@@ -1,8 +1,9 @@
 {
   "collectionName": "components_landing_page_ga_searches",
   "info": {
-    "displayName": "GA Search",
-    "icon": "search"
+    "displayName": "Health Department Search",
+    "icon": "search",
+    "description": ""
   },
   "options": {},
   "attributes": {

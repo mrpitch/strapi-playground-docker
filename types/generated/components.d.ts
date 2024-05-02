@@ -77,8 +77,9 @@ export interface LandingPageButtonTeaser extends Schema.Component {
 export interface LandingPageGaSearch extends Schema.Component {
   collectionName: 'components_landing_page_ga_searches';
   info: {
-    displayName: 'GA Search';
+    displayName: 'Health Department Search';
     icon: 'search';
+    description: '';
   };
   attributes: {
     Headline: Attribute.String;

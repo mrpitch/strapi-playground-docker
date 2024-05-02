@@ -857,6 +857,7 @@ export interface ApiHealthDepartmentHealthDepartment
     singularName: 'health-department';
     pluralName: 'health-departments';
     displayName: 'Health Department';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -865,10 +866,10 @@ export interface ApiHealthDepartmentHealthDepartment
     Title: Attribute.String;
     Street: Attribute.String;
     City: Attribute.String;
-    ZIPCode: Attribute.Integer;
     Contact: Attribute.Email;
-    Phone: Attribute.Integer;
-    Fax: Attribute.Integer;
+    Phone: Attribute.String;
+    Fax: Attribute.String;
+    ZIPCode: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

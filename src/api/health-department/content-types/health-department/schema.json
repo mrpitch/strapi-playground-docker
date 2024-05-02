@@ -4,7 +4,8 @@
   "info": {
     "singularName": "health-department",
     "pluralName": "health-departments",
-    "displayName": "Health Department"
+    "displayName": "Health Department",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -20,17 +21,17 @@
     "City": {
       "type": "string"
     },
-    "ZIPCode": {
-      "type": "integer"
-    },
     "Contact": {
       "type": "email"
     },
     "Phone": {
-      "type": "integer"
+      "type": "string"
     },
     "Fax": {
-      "type": "integer"
+      "type": "string"
+    },
+    "ZIPCode": {
+      "type": "string"
     }
   }
 }
