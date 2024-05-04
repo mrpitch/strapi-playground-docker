@@ -10,11 +10,6 @@
     "Headline": {
       "type": "string"
     },
-    "Icon": {
-      "type": "component",
-      "repeatable": false,
-      "component": "blocks.icons"
-    },
     "Copy": {
       "type": "text"
     }

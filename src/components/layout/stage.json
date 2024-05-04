@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_layout_stages",
+  "info": {
+    "displayName": "Stage",
+    "icon": "folder",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Headline": {
+      "type": "string"
+    },
+    "Subline": {
+      "type": "string"
+    },
+    "Cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.cta"
+    }
+  }
+}

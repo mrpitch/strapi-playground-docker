@@ -1,9 +1,8 @@
 {
-  "collectionName": "components_landing_page_button_teasers",
+  "collectionName": "components_layout_button_teasers",
   "info": {
     "displayName": "Button Teaser",
-    "icon": "apps",
-    "description": ""
+    "icon": "apps"
   },
   "options": {},
   "attributes": {
@@ -16,7 +15,7 @@
     "ButtonCard": {
       "type": "component",
       "repeatable": true,
-      "component": "blocks.button-cards"
+      "component": "blocks.button-card"
     }
   }
 }

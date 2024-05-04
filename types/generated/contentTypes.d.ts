@@ -890,12 +890,12 @@ export interface ApiHealthDepartmentHealthDepartment
   };
 }
 
-export interface ApiLandingPageLandingPage extends Schema.CollectionType {
-  collectionName: 'landing_pages';
+export interface ApiHomepageHomepage extends Schema.SingleType {
+  collectionName: 'homepages';
   info: {
-    singularName: 'landing-page';
-    pluralName: 'landing-pages';
-    displayName: 'Landing Page';
+    singularName: 'homepage';
+    pluralName: 'homepages';
+    displayName: 'Homepage';
     description: '';
   };
   options: {
@@ -903,26 +903,20 @@ export interface ApiLandingPageLandingPage extends Schema.CollectionType {
   };
   attributes: {
     Title: Attribute.String;
-    Slug: Attribute.UID<'api::landing-page.landing-page', 'Title'>;
-    Body: Attribute.DynamicZone<
-      [
-        'landing-page.teaser',
-        'landing-page.button-teaser',
-        'landing-page.stage',
-        'landing-page.ga-search'
-      ]
-    >;
+    slug: Attribute.UID<'api::homepage.homepage', 'Title'>;
+    Stage: Attribute.Component<'layout.stage'>;
+    SEOMeta: Attribute.Component<'shared.seo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::landing-page.landing-page',
+      'api::homepage.homepage',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::landing-page.landing-page',
+      'api::homepage.homepage',
       'oneToOne',
       'admin::user'
     > &
@@ -951,7 +945,7 @@ declare module '@strapi/types' {
       'api::article.article': ApiArticleArticle;
       'api::global-article.global-article': ApiGlobalArticleGlobalArticle;
       'api::health-department.health-department': ApiHealthDepartmentHealthDepartment;
-      'api::landing-page.landing-page': ApiLandingPageLandingPage;
+      'api::homepage.homepage': ApiHomepageHomepage;
     }
   }
 }

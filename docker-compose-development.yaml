@@ -1,39 +1,39 @@
 version: "3.0"
 
 services:
-  dev:
-      # IMPORTNAT: Watch where you are: docker compose command is started in repo root,
-      # so you need to make sure you are in root for all turbo repo stuff (RUN Turbo prune ... etc.  see Dockerfile for details)
-      # and for all strapi stuff in this directory (./api/cms for .env., Dockerfile, etc.)
-      # env_file: .env.development
-      build:
-        # here is the trick: running docker compose from monorepo root,
-        # you need to set the context  back to root (this docker-compose.yaml is under ./api/cms, context: ../../. - thats where the turbo repo stuff runs)
-        # and the reference to Dockerfile for strapi back to this dicrectory (dockerfile: ./api/cmas/Dockerfile)
-        context: . 
-        dockerfile: ./Dockerfile.dev
-      container_name: strapi-playground-dev_v1.1
-      restart: unless-stopped
-      environment:
-        NODE_ENV: development
-        DATABASE_CLIENT: postgres
-        DATABASE_HOST: db_dev
-        DATABASE_PORT: 5432
-        DATABASE_NAME: ${DATABASE_NAME}
-        DATABASE_USERNAME: ${DATABASE_USERNAME}
-        DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      volumes:
-        - ./config:/config
-        - ./src:/src
-        - ./package.json:/package.json
-        - ./.env.development:/.env.development
-        - ./public/uploads:/public/uploads
-      ports:
-        - 1337:1337
-      networks:
-      - strapi_playground
-      depends_on:
-        - db_strapi_dev
+  # strapi_dev:
+  #     # IMPORTNAT: Watch where you are: docker compose command is started in repo root,
+  #     # so you need to make sure you are in root for all turbo repo stuff (RUN Turbo prune ... etc.  see Dockerfile for details)
+  #     # and for all strapi stuff in this directory (./api/cms for .env., Dockerfile, etc.)
+  #     # env_file: .env.development
+  #     build:
+  #       # here is the trick: running docker compose from monorepo root,
+  #       # you need to set the context  back to root (this docker-compose.yaml is under ./api/cms, context: ../../. - thats where the turbo repo stuff runs)
+  #       # and the reference to Dockerfile for strapi back to this dicrectory (dockerfile: ./api/cmas/Dockerfile)
+  #       context: . 
+  #       dockerfile: ./Dockerfile.dev
+  #     container_name: strapi-playground-dev_v1.1
+  #     restart: unless-stopped
+  #     environment:
+  #       NODE_ENV: development
+  #       DATABASE_CLIENT: postgres
+  #       DATABASE_HOST: db_dev
+  #       DATABASE_PORT: 5432
+  #       DATABASE_NAME: ${DATABASE_NAME}
+  #       DATABASE_USERNAME: ${DATABASE_USERNAME}
+  #       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+  #     volumes:
+  #       - ./config:/config
+  #       - ./src:/src
+  #       - ./package.json:/package.json
+  #       - ./.env.development:/.env.development
+  #       - ./public/uploads:/public/uploads
+  #     ports:
+  #       - 1337:1337
+  #     networks:
+  #     - strapi_playground
+  #     depends_on:
+  #       - db_strapi_dev
   db_strapi_dev:
     container_name: strapi-playground-db-dev
     image: 'postgres:15.1'
@@ -43,8 +43,8 @@ services:
       - POSTGRES_USER=${DATABASE_USERNAME}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
     volumes:
-      # - db_strapi_dev:/var/lib/postgresql/data/
-      - ./database/oegd_example_latest.sql.gz:/docker-entrypoint-initdb.d/oegd_example_latest.sql.gz
+      - db_strapi_dev:/var/lib/postgresql/data/
+      #- ./database/oegd_example_latest.sql.gz:/docker-entrypoint-initdb.d/oegd_example_latest.sql.gz
     ports:
       - "5432:5432"
     networks:

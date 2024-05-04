@@ -10,13 +10,13 @@
     "Label": {
       "type": "string"
     },
+    "Url": {
+      "type": "string"
+    },
     "Icon": {
       "type": "component",
       "repeatable": false,
       "component": "blocks.icons"
-    },
-    "Url": {
-      "type": "string"
     }
   }
 }
