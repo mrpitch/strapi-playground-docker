@@ -788,6 +788,55 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface PluginEmailDesignerEmailTemplate
+  extends Schema.CollectionType {
+  collectionName: 'email_templates';
+  info: {
+    singularName: 'email-template';
+    pluralName: 'email-templates';
+    displayName: 'Email-template';
+    name: 'email-template';
+  };
+  options: {
+    draftAndPublish: false;
+    timestamps: true;
+    increments: true;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    templateReferenceId: Attribute.Integer & Attribute.Unique;
+    design: Attribute.JSON;
+    name: Attribute.String;
+    subject: Attribute.String;
+    bodyHtml: Attribute.Text;
+    bodyText: Attribute.Text;
+    enabled: Attribute.Boolean & Attribute.DefaultTo<true>;
+    tags: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::email-designer.email-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::email-designer.email-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiArticleArticle extends Schema.CollectionType {
   collectionName: 'articles';
   info: {
@@ -845,6 +894,38 @@ export interface ApiGlobalArticleGlobalArticle extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::global-article.global-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHeaderHeader extends Schema.SingleType {
+  collectionName: 'headers';
+  info: {
+    singularName: 'header';
+    pluralName: 'headers';
+    displayName: 'Header';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    NavigationList: Attribute.Component<'blocks.nav-items-list', true>;
+    Logo: Attribute.Component<'blocks.logo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::header.header',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::header.header',
       'oneToOne',
       'admin::user'
     > &
@@ -942,8 +1023,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
       'api::article.article': ApiArticleArticle;
       'api::global-article.global-article': ApiGlobalArticleGlobalArticle;
+      'api::header.header': ApiHeaderHeader;
       'api::health-department.health-department': ApiHealthDepartmentHealthDepartment;
       'api::homepage.homepage': ApiHomepageHomepage;
     }

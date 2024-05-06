@@ -60,6 +60,43 @@ export interface BlocksIcons extends Schema.Component {
   };
 }
 
+export interface BlocksLogo extends Schema.Component {
+  collectionName: 'components_blocks_logos';
+  info: {
+    displayName: 'Logo';
+  };
+  attributes: {
+    LogoImage: Attribute.Media;
+    LogoText: Attribute.String;
+  };
+}
+
+export interface BlocksNavItem extends Schema.Component {
+  collectionName: 'components_layout_nav_items';
+  info: {
+    displayName: 'Nav Item';
+    icon: 'arrowRight';
+    description: '';
+  };
+  attributes: {
+    Label: Attribute.String;
+    Href: Attribute.String;
+    isExternal: Attribute.Boolean;
+  };
+}
+
+export interface BlocksNavItemsList extends Schema.Component {
+  collectionName: 'components_layout_nav_items_lists';
+  info: {
+    displayName: 'Nav Items List';
+    description: '';
+  };
+  attributes: {
+    Headline: Attribute.String;
+    NavItem: Attribute.Component<'blocks.nav-item', true>;
+  };
+}
+
 export interface LayoutButtonTeaser extends Schema.Component {
   collectionName: 'components_layout_button_teasers';
   info: {
@@ -146,6 +183,9 @@ declare module '@strapi/types' {
       'blocks.content-card': BlocksContentCard;
       'blocks.cta': BlocksCta;
       'blocks.icons': BlocksIcons;
+      'blocks.logo': BlocksLogo;
+      'blocks.nav-item': BlocksNavItem;
+      'blocks.nav-items-list': BlocksNavItemsList;
       'layout.button-teaser': LayoutButtonTeaser;
       'layout.stage': LayoutStage;
       'shared.meta-social': SharedMetaSocial;
