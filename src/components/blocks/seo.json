@@ -1,5 +1,5 @@
 {
-  "collectionName": "components_shared_seos",
+  "collectionName": "components_blocks_seos",
   "info": {
     "displayName": "seo",
     "icon": "search",
@@ -27,11 +27,6 @@
         "files",
         "videos"
       ]
-    },
-    "metaSocial": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.meta-social"
     },
     "keywords": {
       "type": "text",

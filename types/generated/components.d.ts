@@ -1,5 +1,17 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface BlocksAccordionItem extends Schema.Component {
+  collectionName: 'components_blocks_accordion_items';
+  info: {
+    displayName: 'Accordion Item';
+    description: '';
+  };
+  attributes: {
+    Label: Attribute.String;
+    Copy: Attribute.Blocks;
+  };
+}
+
 export interface BlocksButtonCard extends Schema.Component {
   collectionName: 'components_landing_page_button_cards';
   info: {
@@ -40,7 +52,7 @@ export interface BlocksCta extends Schema.Component {
     Type: Attribute.Enumeration<
       ['Primary Button', 'Secondary Button', 'Outline', 'Link']
     >;
-    Icons: Attribute.Component<'blocks.icons'>;
+    Icon: Attribute.Enumeration<['Icon 1', 'Icon 2', 'Icon 3']>;
   };
 }
 
@@ -97,58 +109,8 @@ export interface BlocksNavItemsList extends Schema.Component {
   };
 }
 
-export interface LayoutButtonTeaser extends Schema.Component {
-  collectionName: 'components_layout_button_teasers';
-  info: {
-    displayName: 'Button Teaser';
-    icon: 'apps';
-  };
-  attributes: {
-    Headline: Attribute.String;
-    Subline: Attribute.String;
-    ButtonCard: Attribute.Component<'blocks.button-card', true>;
-  };
-}
-
-export interface LayoutStage extends Schema.Component {
-  collectionName: 'components_layout_stages';
-  info: {
-    displayName: 'Stage';
-    icon: 'folder';
-    description: '';
-  };
-  attributes: {
-    Headline: Attribute.String;
-    Subline: Attribute.String;
-    Cta: Attribute.Component<'blocks.cta'>;
-  };
-}
-
-export interface SharedMetaSocial extends Schema.Component {
-  collectionName: 'components_shared_meta_socials';
-  info: {
-    displayName: 'metaSocial';
-    icon: 'project-diagram';
-  };
-  attributes: {
-    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> &
-      Attribute.Required;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60;
-      }>;
-    description: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 65;
-      }>;
-    image: Attribute.Media;
-  };
-}
-
-export interface SharedSeo extends Schema.Component {
-  collectionName: 'components_shared_seos';
+export interface BlocksSeo extends Schema.Component {
+  collectionName: 'components_blocks_seos';
   info: {
     displayName: 'seo';
     icon: 'search';
@@ -167,7 +129,6 @@ export interface SharedSeo extends Schema.Component {
         maxLength: 160;
       }>;
     metaImage: Attribute.Media;
-    metaSocial: Attribute.Component<'shared.meta-social', true>;
     keywords: Attribute.Text;
     metaRobots: Attribute.String;
     structuredData: Attribute.JSON;
@@ -176,9 +137,92 @@ export interface SharedSeo extends Schema.Component {
   };
 }
 
+export interface LayoutAccordion extends Schema.Component {
+  collectionName: 'components_layout_accordions';
+  info: {
+    displayName: 'Accordion';
+    icon: 'layer';
+    description: '';
+  };
+  attributes: {
+    Headline: Attribute.String;
+    AccordionItem: Attribute.Component<'blocks.accordion-item', true> &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+  };
+}
+
+export interface LayoutButtonTeaser extends Schema.Component {
+  collectionName: 'components_layout_button_teasers';
+  info: {
+    displayName: 'Button Teaser';
+    icon: 'apps';
+  };
+  attributes: {
+    Headline: Attribute.String;
+    Subline: Attribute.String;
+    ButtonCard: Attribute.Component<'blocks.button-card', true>;
+  };
+}
+
+export interface LayoutFaq extends Schema.Component {
+  collectionName: 'components_layout_faqs';
+  info: {
+    displayName: 'FAQ';
+    icon: 'question';
+  };
+  attributes: {
+    Headline: Attribute.String;
+    faqs: Attribute.Relation<'layout.faq', 'oneToMany', 'api::faq.faq'>;
+  };
+}
+
+export interface LayoutRichTextBlock extends Schema.Component {
+  collectionName: 'components_layout_rich_text_blocks';
+  info: {
+    displayName: 'RichText Block';
+    icon: 'file';
+    description: '';
+  };
+  attributes: {
+    Headline: Attribute.String;
+    Subline: Attribute.String;
+    Copy: Attribute.Blocks;
+  };
+}
+
+export interface LayoutStage extends Schema.Component {
+  collectionName: 'components_layout_stages';
+  info: {
+    displayName: 'Stage';
+    icon: 'folder';
+    description: '';
+  };
+  attributes: {
+    Headline: Attribute.String;
+    Subline: Attribute.String;
+    Cta: Attribute.Component<'blocks.cta'>;
+  };
+}
+
+export interface MyCategoryMyComponent extends Schema.Component {
+  collectionName: 'components_my_category_my_components';
+  info: {
+    displayName: 'My Component';
+  };
+  attributes: {
+    MyComponentTitle: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'blocks.accordion-item': BlocksAccordionItem;
       'blocks.button-card': BlocksButtonCard;
       'blocks.content-card': BlocksContentCard;
       'blocks.cta': BlocksCta;
@@ -186,10 +230,13 @@ declare module '@strapi/types' {
       'blocks.logo': BlocksLogo;
       'blocks.nav-item': BlocksNavItem;
       'blocks.nav-items-list': BlocksNavItemsList;
+      'blocks.seo': BlocksSeo;
+      'layout.accordion': LayoutAccordion;
       'layout.button-teaser': LayoutButtonTeaser;
+      'layout.faq': LayoutFaq;
+      'layout.rich-text-block': LayoutRichTextBlock;
       'layout.stage': LayoutStage;
-      'shared.meta-social': SharedMetaSocial;
-      'shared.seo': SharedSeo;
+      'my-category.my-component': MyCategoryMyComponent;
     }
   }
 }

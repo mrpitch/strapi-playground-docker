@@ -32,6 +32,21 @@
     },
     "ZIPCode": {
       "type": "string"
+    },
+    "Logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "RichTextBlock": {
+      "type": "component",
+      "repeatable": true,
+      "component": "layout.rich-text-block"
     }
   }
 }

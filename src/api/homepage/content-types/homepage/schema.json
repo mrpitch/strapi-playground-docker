@@ -12,8 +12,9 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
-      "type": "string"
+    "title": {
+      "type": "string",
+      "required": true
     },
     "slug": {
       "type": "uid",
@@ -24,10 +25,17 @@
       "repeatable": false,
       "component": "layout.stage"
     },
-    "SEOMeta": {
+    "SeoMeta": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.seo"
+      "component": "blocks.seo"
+    },
+    "Body": {
+      "type": "dynamiczone",
+      "components": [
+        "layout.button-teaser",
+        "layout.rich-text-block"
+      ]
     }
   }
 }

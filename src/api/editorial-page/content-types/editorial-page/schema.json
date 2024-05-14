@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "editorial_pages",
+  "info": {
+    "singularName": "editorial-page",
+    "pluralName": "editorial-pages",
+    "displayName": "Editorial Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title"
+    },
+    "SeoMeta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.seo"
+    },
+    "Content": {
+      "type": "dynamiczone",
+      "components": [
+        "layout.accordion",
+        "layout.rich-text-block",
+        "layout.faq"
+      ]
+    }
+  }
+}

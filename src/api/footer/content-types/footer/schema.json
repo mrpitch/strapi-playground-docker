@@ -1,11 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "headers",
+  "collectionName": "footers",
   "info": {
-    "singularName": "header",
-    "pluralName": "headers",
-    "displayName": "Header",
-    "description": ""
+    "singularName": "footer",
+    "pluralName": "footers",
+    "displayName": "Footer"
   },
   "options": {
     "draftAndPublish": true
@@ -20,9 +19,9 @@
       "repeatable": false,
       "component": "blocks.logo"
     },
-    "NavigationList": {
+    "LinkList": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "component": "blocks.nav-items-list"
     }
   }

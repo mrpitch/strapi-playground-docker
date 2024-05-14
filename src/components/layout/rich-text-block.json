@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_layout_rich_text_blocks",
+  "info": {
+    "displayName": "RichText Block",
+    "icon": "file",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Headline": {
+      "type": "string"
+    },
+    "Subline": {
+      "type": "string"
+    },
+    "Copy": {
+      "type": "blocks"
+    }
+  }
+}

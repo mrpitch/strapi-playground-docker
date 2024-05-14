@@ -870,6 +870,146 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
 }
 
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Slug: Attribute.UID<'api::category.category', 'Title'>;
+    service: Attribute.Relation<
+      'api::category.category',
+      'manyToOne',
+      'api::service.service'
+    >;
+    faq: Attribute.Relation<
+      'api::category.category',
+      'manyToOne',
+      'api::faq.faq'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEditorialPageEditorialPage extends Schema.CollectionType {
+  collectionName: 'editorial_pages';
+  info: {
+    singularName: 'editorial-page';
+    pluralName: 'editorial-pages';
+    displayName: 'Editorial Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Slug: Attribute.UID<'api::editorial-page.editorial-page', 'Title'>;
+    SeoMeta: Attribute.Component<'blocks.seo'>;
+    Content: Attribute.DynamicZone<
+      ['layout.accordion', 'layout.rich-text-block', 'layout.faq']
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::editorial-page.editorial-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::editorial-page.editorial-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFaqFaq extends Schema.CollectionType {
+  collectionName: 'faqs';
+  info: {
+    singularName: 'faq';
+    pluralName: 'faqs';
+    displayName: 'FAQ';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Slug: Attribute.UID<'api::faq.faq', 'Title'>;
+    Question: Attribute.String;
+    Answer: Attribute.Blocks;
+    categories: Attribute.Relation<
+      'api::faq.faq',
+      'oneToMany',
+      'api::category.category'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFooterFooter extends Schema.SingleType {
+  collectionName: 'footers';
+  info: {
+    singularName: 'footer';
+    pluralName: 'footers';
+    displayName: 'Footer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Logo: Attribute.Component<'blocks.logo'>;
+    LinkList: Attribute.Component<'blocks.nav-items-list'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::footer.footer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::footer.footer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGlobalArticleGlobalArticle extends Schema.CollectionType {
   collectionName: 'global_articles';
   info: {
@@ -913,8 +1053,9 @@ export interface ApiHeaderHeader extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    NavigationList: Attribute.Component<'blocks.nav-items-list', true>;
+    Title: Attribute.String;
     Logo: Attribute.Component<'blocks.logo'>;
+    NavigationList: Attribute.Component<'blocks.nav-items-list', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -953,6 +1094,8 @@ export interface ApiHealthDepartmentHealthDepartment
     Phone: Attribute.String;
     Fax: Attribute.String;
     ZIPCode: Attribute.String;
+    Logo: Attribute.Media;
+    RichTextBlock: Attribute.Component<'layout.rich-text-block', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -983,10 +1126,13 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    Title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::homepage.homepage', 'Title'>;
     Stage: Attribute.Component<'layout.stage'>;
-    SEOMeta: Attribute.Component<'shared.seo'>;
+    SeoMeta: Attribute.Component<'blocks.seo'>;
+    Body: Attribute.DynamicZone<
+      ['layout.button-teaser', 'layout.rich-text-block']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -998,6 +1144,83 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::homepage.homepage',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMyCollectionMyCollection extends Schema.CollectionType {
+  collectionName: 'my_collections';
+  info: {
+    singularName: 'my-collection';
+    pluralName: 'my-collections';
+    displayName: 'My Collection';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    myTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 50;
+        maxLength: 100;
+      }> &
+      Attribute.DefaultTo<'Default'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::my-collection.my-collection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::my-collection.my-collection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiServiceService extends Schema.CollectionType {
+  collectionName: 'services';
+  info: {
+    singularName: 'service';
+    pluralName: 'services';
+    displayName: 'Service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Slug: Attribute.UID<'api::service.service', 'Title'>;
+    Excerpt: Attribute.Text;
+    categories: Attribute.Relation<
+      'api::service.service',
+      'oneToMany',
+      'api::category.category'
+    >;
+    RichtextBlock: Attribute.Component<'layout.rich-text-block', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::service.service',
       'oneToOne',
       'admin::user'
     > &
@@ -1025,10 +1248,16 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
       'api::article.article': ApiArticleArticle;
+      'api::category.category': ApiCategoryCategory;
+      'api::editorial-page.editorial-page': ApiEditorialPageEditorialPage;
+      'api::faq.faq': ApiFaqFaq;
+      'api::footer.footer': ApiFooterFooter;
       'api::global-article.global-article': ApiGlobalArticleGlobalArticle;
       'api::header.header': ApiHeaderHeader;
       'api::health-department.health-department': ApiHealthDepartmentHealthDepartment;
       'api::homepage.homepage': ApiHomepageHomepage;
+      'api::my-collection.my-collection': ApiMyCollectionMyCollection;
+      'api::service.service': ApiServiceService;
     }
   }
 }

@@ -22,10 +22,13 @@
         "Link"
       ]
     },
-    "Icons": {
-      "type": "component",
-      "repeatable": false,
-      "component": "blocks.icons"
+    "Icon": {
+      "type": "enumeration",
+      "enum": [
+        "Icon 1",
+        "Icon 2",
+        "Icon 3"
+      ]
     }
   }
 }
