@@ -13,33 +13,4 @@ export default {
         },
       },
     },
-    menus: {
-      config: {
-        layouts: {
-          menuItem: {
-            link: [
-              {
-                input: {
-                  label: 'Example Field Label',
-                  name: 'example_field',
-                  type: 'bool',
-                },
-                grid: {
-                  col: 6,
-                },
-              },
-            ],
-            headline: [
-              {
-                input: {
-                  label: 'Label',
-                  name: 'leable',
-                  type: 'text',
-                },
-              },
-            ],
-          },
-        },
-      },
-    },
   };

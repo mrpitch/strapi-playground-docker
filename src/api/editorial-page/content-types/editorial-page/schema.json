@@ -28,8 +28,7 @@
       "type": "dynamiczone",
       "components": [
         "layout.accordion",
-        "layout.rich-text-block",
-        "layout.faq"
+        "layout.rich-text-block"
       ]
     }
   }

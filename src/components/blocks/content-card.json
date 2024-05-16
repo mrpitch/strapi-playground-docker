@@ -12,6 +12,14 @@
     },
     "Copy": {
       "type": "text"
+    },
+    "Icon": {
+      "type": "enumeration",
+      "enum": [
+        "Icon 1",
+        "Icon 2",
+        "Icon 3"
+      ]
     }
   }
 }

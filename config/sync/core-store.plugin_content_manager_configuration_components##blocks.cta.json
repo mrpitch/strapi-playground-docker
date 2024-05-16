@@ -1,0 +1,115 @@
+{
+  "key": "plugin_content_manager_configuration_components::blocks.cta",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "Label",
+      "defaultSortBy": "Label",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "Label": {
+        "edit": {
+          "label": "Label",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "Label",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "Href": {
+        "edit": {
+          "label": "Href",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "Href",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "Type": {
+        "edit": {
+          "label": "Type",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "Type",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "Icon": {
+        "edit": {
+          "label": "Icon",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "Icon",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "Label",
+        "Href",
+        "Type"
+      ],
+      "edit": [
+        [
+          {
+            "name": "Label",
+            "size": 6
+          },
+          {
+            "name": "Href",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "Type",
+            "size": 6
+          },
+          {
+            "name": "Icon",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "blocks.cta",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

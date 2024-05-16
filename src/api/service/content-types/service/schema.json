@@ -4,7 +4,8 @@
   "info": {
     "singularName": "service",
     "pluralName": "services",
-    "displayName": "Service"
+    "displayName": "Service",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -31,6 +32,14 @@
       "type": "component",
       "repeatable": true,
       "component": "layout.rich-text-block"
+    },
+    "Icon": {
+      "type": "enumeration",
+      "enum": [
+        "Icon 1",
+        "Icon 2",
+        "Icon 3"
+      ]
     }
   }
 }

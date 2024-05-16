@@ -29,13 +29,6 @@
       "type": "component",
       "repeatable": false,
       "component": "blocks.seo"
-    },
-    "Body": {
-      "type": "dynamiczone",
-      "components": [
-        "layout.button-teaser",
-        "layout.rich-text-block"
-      ]
     }
   }
 }

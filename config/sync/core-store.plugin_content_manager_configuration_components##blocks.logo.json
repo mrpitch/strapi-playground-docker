@@ -1,0 +1,76 @@
+{
+  "key": "plugin_content_manager_configuration_components::blocks.logo",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "LogoText",
+      "defaultSortBy": "LogoText",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "LogoImage": {
+        "edit": {
+          "label": "LogoImage",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "LogoImage",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "LogoText": {
+        "edit": {
+          "label": "LogoText",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "LogoText",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "LogoImage",
+        "LogoText"
+      ],
+      "edit": [
+        [
+          {
+            "name": "LogoImage",
+            "size": 6
+          },
+          {
+            "name": "LogoText",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "blocks.logo",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

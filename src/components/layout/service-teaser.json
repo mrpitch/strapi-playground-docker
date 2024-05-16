@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_layout_service_teasers",
+  "info": {
+    "displayName": "Service Teaser",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Headline": {
+      "type": "string"
+    },
+    "Subline": {
+      "type": "string"
+    },
+    "ContentCard": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.content-card"
+    },
+    "service": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::service.service"
+    }
+  }
+}

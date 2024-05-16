@@ -22,7 +22,7 @@ export interface BlocksButtonCard extends Schema.Component {
   attributes: {
     Label: Attribute.String;
     Url: Attribute.String;
-    Icon: Attribute.Component<'blocks.icons'>;
+    Icon: Attribute.Enumeration<['Icon 1', 'Icon 2', 'Icon 3']>;
   };
 }
 
@@ -36,6 +36,7 @@ export interface BlocksContentCard extends Schema.Component {
   attributes: {
     Headline: Attribute.String;
     Copy: Attribute.Text;
+    Icon: Attribute.Enumeration<['Icon 1', 'Icon 2', 'Icon 3']>;
   };
 }
 
@@ -93,7 +94,7 @@ export interface BlocksNavItem extends Schema.Component {
   attributes: {
     Label: Attribute.String;
     Href: Attribute.String;
-    isExternal: Attribute.Boolean;
+    isExternal: Attribute.Boolean & Attribute.DefaultTo<false>;
   };
 }
 
@@ -128,11 +129,7 @@ export interface BlocksSeo extends Schema.Component {
         minLength: 50;
         maxLength: 160;
       }>;
-    metaImage: Attribute.Media;
     keywords: Attribute.Text;
-    metaRobots: Attribute.String;
-    structuredData: Attribute.JSON;
-    metaViewport: Attribute.String;
     canonicalURL: Attribute.String;
   };
 }
@@ -169,18 +166,6 @@ export interface LayoutButtonTeaser extends Schema.Component {
   };
 }
 
-export interface LayoutFaq extends Schema.Component {
-  collectionName: 'components_layout_faqs';
-  info: {
-    displayName: 'FAQ';
-    icon: 'question';
-  };
-  attributes: {
-    Headline: Attribute.String;
-    faqs: Attribute.Relation<'layout.faq', 'oneToMany', 'api::faq.faq'>;
-  };
-}
-
 export interface LayoutRichTextBlock extends Schema.Component {
   collectionName: 'components_layout_rich_text_blocks';
   info: {
@@ -192,6 +177,25 @@ export interface LayoutRichTextBlock extends Schema.Component {
     Headline: Attribute.String;
     Subline: Attribute.String;
     Copy: Attribute.Blocks;
+  };
+}
+
+export interface LayoutServiceTeaser extends Schema.Component {
+  collectionName: 'components_layout_service_teasers';
+  info: {
+    displayName: 'Service Teaser';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    Headline: Attribute.String;
+    Subline: Attribute.String;
+    ContentCard: Attribute.Component<'blocks.content-card', true>;
+    service: Attribute.Relation<
+      'layout.service-teaser',
+      'oneToOne',
+      'api::service.service'
+    >;
   };
 }
 
@@ -209,16 +213,6 @@ export interface LayoutStage extends Schema.Component {
   };
 }
 
-export interface MyCategoryMyComponent extends Schema.Component {
-  collectionName: 'components_my_category_my_components';
-  info: {
-    displayName: 'My Component';
-  };
-  attributes: {
-    MyComponentTitle: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -233,10 +227,9 @@ declare module '@strapi/types' {
       'blocks.seo': BlocksSeo;
       'layout.accordion': LayoutAccordion;
       'layout.button-teaser': LayoutButtonTeaser;
-      'layout.faq': LayoutFaq;
       'layout.rich-text-block': LayoutRichTextBlock;
+      'layout.service-teaser': LayoutServiceTeaser;
       'layout.stage': LayoutStage;
-      'my-category.my-component': MyCategoryMyComponent;
     }
   }
 }

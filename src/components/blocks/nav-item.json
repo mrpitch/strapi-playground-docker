@@ -14,7 +14,8 @@
       "type": "string"
     },
     "isExternal": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     }
   }
 }

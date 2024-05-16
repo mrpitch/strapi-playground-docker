@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
-      "type": "string"
-    },
     "Logo": {
       "type": "component",
       "repeatable": false,

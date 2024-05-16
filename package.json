@@ -27,6 +27,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "5.3.4",
+    "strapi-plugin-config-sync": "^1.2.5",
     "strapi-plugin-email-designer": "^2.2.1",
     "strapi-plugin-local-image-sharp": "^1.7.0",
     "strapi-plugin-migrations": "^1.0.5",
