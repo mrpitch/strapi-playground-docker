@@ -50,9 +50,9 @@ jobs:
           echo "CDN_ROOT_PATH=${{ vars.CDN_ROOT_PATH}}" >> .env
       - name: Remove Network and delete Old Container
         run: |
-          docker-compose down
-          docker image rm -f ${{env.STRAPI_IMAGE}}
-          docker image rm -f ${{env.NGINX_IMAGE}}
+          sudo  docker-compose down
+          sudo docker image rm -f ${{env.STRAPI_IMAGE}}
+          sudo docker image rm -f ${{env.NGINX_IMAGE}}
       #   - name: Build and tag image
       #     id: build-image
       #     run: |
