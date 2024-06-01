@@ -837,6 +837,67 @@ export interface PluginEmailDesignerEmailTemplate
   };
 }
 
+export interface ApiArticleArticle extends Schema.CollectionType {
+  collectionName: 'articles';
+  info: {
+    singularName: 'article';
+    pluralName: 'articles';
+    displayName: 'Articles';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    internalName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::article.article', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::article.article',
+      'oneToMany',
+      'api::article.article'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
@@ -850,11 +911,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   attributes: {
     Title: Attribute.String;
     Slug: Attribute.UID<'api::category.category', 'Title'>;
-    service: Attribute.Relation<
-      'api::category.category',
-      'manyToOne',
-      'api::service.service'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -866,42 +922,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiEditorialPageEditorialPage extends Schema.CollectionType {
-  collectionName: 'editorial_pages';
-  info: {
-    singularName: 'editorial-page';
-    pluralName: 'editorial-pages';
-    displayName: 'Editorial Page';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String;
-    Slug: Attribute.UID<'api::editorial-page.editorial-page', 'Title'>;
-    SeoMeta: Attribute.Component<'blocks.seo'>;
-    Content: Attribute.DynamicZone<
-      ['layout.accordion', 'layout.rich-text-block']
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::editorial-page.editorial-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::editorial-page.editorial-page',
       'oneToOne',
       'admin::user'
     > &
@@ -973,120 +993,6 @@ export interface ApiHeaderHeader extends Schema.SingleType {
   };
 }
 
-export interface ApiHealthDepartmentHealthDepartment
-  extends Schema.CollectionType {
-  collectionName: 'health_departments';
-  info: {
-    singularName: 'health-department';
-    pluralName: 'health-departments';
-    displayName: 'Health Department';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String;
-    Street: Attribute.String;
-    City: Attribute.String;
-    Contact: Attribute.Email;
-    Phone: Attribute.String;
-    Fax: Attribute.String;
-    ZIPCode: Attribute.String;
-    Logo: Attribute.Media;
-    RichTextBlock: Attribute.Component<'layout.rich-text-block', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::health-department.health-department',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::health-department.health-department',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiHomepageHomepage extends Schema.SingleType {
-  collectionName: 'homepages';
-  info: {
-    singularName: 'homepage';
-    pluralName: 'homepages';
-    displayName: 'Homepage';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    slug: Attribute.UID<'api::homepage.homepage', 'Title'>;
-    Stage: Attribute.Component<'layout.stage'>;
-    SeoMeta: Attribute.Component<'blocks.seo'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiServiceService extends Schema.CollectionType {
-  collectionName: 'services';
-  info: {
-    singularName: 'service';
-    pluralName: 'services';
-    displayName: 'Service';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String;
-    Slug: Attribute.UID<'api::service.service', 'Title'>;
-    Excerpt: Attribute.Text;
-    categories: Attribute.Relation<
-      'api::service.service',
-      'oneToMany',
-      'api::category.category'
-    >;
-    RichtextBlock: Attribute.Component<'layout.rich-text-block', true>;
-    Icon: Attribute.Enumeration<['Icon 1', 'Icon 2', 'Icon 3']>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::service.service',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::service.service',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1106,13 +1012,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
+      'api::article.article': ApiArticleArticle;
       'api::category.category': ApiCategoryCategory;
-      'api::editorial-page.editorial-page': ApiEditorialPageEditorialPage;
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;
-      'api::health-department.health-department': ApiHealthDepartmentHealthDepartment;
-      'api::homepage.homepage': ApiHomepageHomepage;
-      'api::service.service': ApiServiceService;
     }
   }
 }

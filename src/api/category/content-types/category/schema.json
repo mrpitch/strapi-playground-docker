@@ -17,12 +17,6 @@
     "Slug": {
       "type": "uid",
       "targetField": "Title"
-    },
-    "service": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::service.service",
-      "inversedBy": "categories"
     }
   }
 }
