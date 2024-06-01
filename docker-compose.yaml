@@ -50,6 +50,11 @@ services:
       - "5432:5432"
     networks:
       - strapi_playground
+  nginx:
+    build: ./nginx
+    image: nginx-image
+    ports:
+      - 80:80
 
 volumes:
   db_data_prod:
