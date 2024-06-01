@@ -60,4 +60,4 @@ jobs:
       #       docker build -t ${{env.NGINX_IMAGE}} ./nginx
       - name: Run docker container
         run: |
-          docker-compose up -d
+          sudo docker-compose up -d
