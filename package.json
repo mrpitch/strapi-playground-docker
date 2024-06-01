@@ -13,12 +13,13 @@
     "build:docker-image": "docker build -t strapi-playground-prod:v1.0 -f Dockerfile .",
     "build:docker-dev-image": "docker build -t strapi-playground-dev:v1.0 -f Dockerfile.dev .",
     "dev:docker": "docker compose -f docker-compose-development.yaml --env-file .env.development up -d",
-    "prod:docker": "docker compose -f docker-compose.yaml --env-file .env.production up -d"
+    "prod:docker": "docker compose -f docker-compose.yaml --env-file .env.production up --build -d"
   },
   "dependencies": {
     "@strapi/plugin-graphql": "^4.23.1",
     "@strapi/plugin-i18n": "4.23.1",
     "@strapi/plugin-users-permissions": "4.23.1",
+    "@strapi/provider-upload-aws-s3": "^4.24.4",
     "@strapi/provider-upload-local": "4.23.1",
     "@strapi/strapi": "4.23.1",
     "pg": "8.8.0",

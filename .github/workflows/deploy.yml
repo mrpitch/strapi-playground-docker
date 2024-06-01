@@ -1,0 +1,63 @@
+name: Deploy to EC2
+on:
+  push:
+    branches: [develop]
+env:
+  AWS_REGION: eu-central-1 # set this to your preferred AWS region, e.g. us-west-1
+  STRAPI_IMAGE: strapi-playground-prod_v1.0
+  NGINX_IMAGE: nginx-image
+jobs:
+  build-and-push:
+    name: Build and Push to ECR
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: [self-hosted, linux, ARM64, strapi.mrpitch.rocks]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: arn:aws:iam::890179951921:role/SandboxDemoGithubAction
+          role-session-name: OIDCSession
+
+      - name: create .env file
+        run: |
+          echo "#strapi app config" >> .env
+          echo "NODE_ENV=production" >> .env
+          echo "APP_KEYS=${{ vars.APP_KEYS }}" >> .env
+          echo "API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}" >> .env
+          echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> .env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET}}" >> .env
+          echo "#postgres" >> .env
+          echo "DATABASE_CLIENT=${{ vars.DATABASE_CLIENT }}" >> .env
+          echo "DATABASE_HOST=${{ vars.DATABASE_HOST }}" >> .env
+          echo "DATABASE_PORT=${{ vars.DATABASE_PORT }}" >> .env
+          echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> .env
+          echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> .env
+          echo "DATABASE_NAME=${{ vars.DATABASE_NAME }}" >> .env
+          echo "DATABASE_SCHEMA=${{ vars.DATABASE_SCHEMA }}" >> .env
+          echo "DATABASE_SSL=${{ vars.DATABASE_SSL }}" >> .env
+          echo "#AWS S3" >> .env
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
+          echo "AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }}" >> .env
+          echo "AWS_BUCKET=${{ vars.AWS_BUCKET }}" >> .env
+          echo "AWS_REGION==${{ vars.AWS_REGION }}" >> .env
+          echo "CDN_URL=${{ vars.CDN_URL}}" >> .env
+          echo "CDN_ROOT_PATH=${{ vars.CDN_ROOT_PATH}}" >> .env
+      - name: Remove Network and delete Old Container
+        run: |
+          docker-compose down
+          docker image rm -f ${{env.STRAPI_IMAGE}}
+          docker image rm -f ${{env.NGINX_IMAGE}}
+      #   - name: Build and tag image
+      #     id: build-image
+      #     run: |
+      #       docker build -t ${{env.STRAPI_IMAGE}} .
+      #       docker build -t ${{env.NGINX_IMAGE}} ./nginx
+      - name: Run docker container
+        run: |
+          docker-compose up -d
