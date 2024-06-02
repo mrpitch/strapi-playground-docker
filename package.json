@@ -6,14 +6,14 @@
   "scripts": {
     "start:dev": "ENV_PATH=.env.development strapi develop",
     "build:dev": "ENV_PATH=.env.development strapi build",
-    "start:prod": "ENV_PATH=.env NODE_ENV=production strapi start",
-    "build:prod": "ENV_PATH=.env NODE_ENV=production strapi build",
+    "start:prod": "ENV_PATH=.env.production NODE_ENV=production strapi start",
+    "build:prod": "ENV_PATH=.env.production NODE_ENV=production strapi build",
     "strapi": "strapi",
     "nuke": "rm -r node_modules; for d in node_modules; do echo $d; rm -r $d; done",
     "build:docker-image": "docker build -t strapi-playground-prod:v1.0 -f Dockerfile .",
     "build:docker-dev-image": "docker build -t strapi-playground-dev:v1.0 -f Dockerfile.dev .",
     "dev:docker": "docker compose -f docker-compose-development.yaml --env-file .env.development up -d",
-    "prod:docker": "docker compose -f docker-compose.yaml --env-file .env up --build -d"
+    "prod:docker": "docker compose -f docker-compose.yaml --env-file .env.production up --build -d"
   },
   "dependencies": {
     "@strapi/plugin-graphql": "^4.23.1",

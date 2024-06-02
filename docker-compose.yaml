@@ -3,21 +3,27 @@ version: "3.0"
 services:
   nginx:
     build: ./nginx
-    image: nginx-image
+    image: nginx
     ports:
       - 80:80
+      - 443:443
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/strapi.conf :ro
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf 
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /tmp/acme-challenge:/tmp/acme-challenge
     links:
       - prod
     restart: always
-  certbot:
-    image: certbot/certbot:latest
+  letsencrypt:
+    container_name: "certbot"
+    image: certbot/certbot
+    command: sh -c "certbot certonly --webroot -w /tmp/acme-challenge/ -d strapi.mrpitch.rocks --text --agree-tos --email mrpitch@outlook.com --rsa-key-size 4096 --verbose --keep-until-expiring --preferred-challenges=http"
+    entrypoint: ""
     volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
+      - "/etc/letsencrypt:/etc/letsencrypt"
+      - "/tmp/acme-challenge:/tmp/acme-challenge"
+    environment:
+      - TERM=xterm
   prod:
       build:
         context: . 
@@ -37,7 +43,7 @@ services:
         - ./config:/usr/src/app/config
         - ./src:/usr/src/app/src
         - ./package.json:/usr/src/app/package.json
-        # - ./.env.production:/usr/src/app/.env.production
+        - ./.env.production:/usr/src/app/.env.production
         # - ./public/uploads:/usr/src/app/public/uploads
       ports:
         - 1337:1337
@@ -49,7 +55,7 @@ services:
   db_prod:
     container_name: strapi-playground-db-prod
     image: 'postgres:15.1'
-    env_file: .env
+    env_file: .env.production
     environment:
       - POSTGRES_DB=${DATABASE_NAME}
       - POSTGRES_USER=${DATABASE_USERNAME}
