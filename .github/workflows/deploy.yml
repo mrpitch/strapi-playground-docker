@@ -4,7 +4,7 @@ on:
     branches: [develop]
 env:
   AWS_REGION: eu-central-1 # set this to your preferred AWS region, e.g. us-west-1
-  STRAPI_IMAGE: strapi-playground-prod_v1.0
+  STRAPI_IMAGE: strapi-playground-prod
   NGINX_IMAGE: nginx-image
 jobs:
   build-and-push:

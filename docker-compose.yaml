@@ -24,7 +24,7 @@ services:
         # and the reference to Dockerfile for strapi back to this dicrectory (dockerfile: ./api/cmas/Dockerfile)
         context: . 
         dockerfile: ./Dockerfile
-      container_name: strapi-playground-prod_v1.0
+      container_name: strapi-playground-prod
       restart: unless-stopped
       environment:
         NODE_ENV: production
