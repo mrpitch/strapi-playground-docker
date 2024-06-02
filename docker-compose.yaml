@@ -31,6 +31,7 @@ services:
       # image: strapi-playground-prod
       container_name: strapi-playground-prod
       restart: unless-stopped
+      env_file: .env
       environment:
         NODE_ENV: production
         DATABASE_CLIENT: postgres
@@ -39,12 +40,12 @@ services:
         DATABASE_NAME: ${DATABASE_NAME}
         DATABASE_USERNAME: ${DATABASE_USERNAME}
         DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      volumes:
-        - ./config:/usr/src/app/config
-        - ./src:/usr/src/app/src
-        - ./package.json:/usr/src/app/package.json
-        - ./.env:/usr/src/app/.env
-        # - ./public/uploads:/usr/src/app/public/uploads
+      # volumes:
+      #   - ./config:/usr/src/app/config
+      #   - ./src:/usr/src/app/src
+      #   - ./package.json:/usr/src/app/package.json
+      #   - ./.env:/usr/src/app/.env
+      #   # - ./public/uploads:/usr/src/app/public/uploads
       ports:
         - 1337:1337
       networks:
