@@ -1,6 +1,18 @@
 version: "3.0"
 
 services:
+  nginx:
+    build: ./nginx
+    image: nginx-image
+    ports:
+      - 1337:1337
+      - 27017:27017
+      - 80:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/strapi.conf
+    links:
+      - prod
+    restart: always
   prod:
       # IMPORTNAT: Watch where you are: docker compose command is started in repo root,
       # so you need to make sure you are in root for all turbo repo stuff (RUN Turbo prune ... etc.  see Dockerfile for details)
@@ -26,8 +38,8 @@ services:
         - ./config:/usr/src/app/config
         - ./src:/usr/src/app/src
         - ./package.json:/usr/src/app/package.json
-        - ./.env.production:/usr/src/app/.env.production
-        - ./public/uploads:/usr/src/app/public/uploads
+        # - ./.env.production:/usr/src/app/.env.production
+        # - ./public/uploads:/usr/src/app/public/uploads
       ports:
         - 1337:1337
       networks:
@@ -50,11 +62,6 @@ services:
       - "5432:5432"
     networks:
       - strapi_playground
-  nginx:
-    build: ./nginx
-    image: nginx-image
-    ports:
-      - 80:80
 
 volumes:
   db_data_prod:
