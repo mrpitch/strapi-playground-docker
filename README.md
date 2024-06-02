@@ -23,4 +23,4 @@ Run docker compose to start (build) prod version run (see package.json)
 pnpm docker:prod
 ```
 
-Please find example .env.production in the repo (nothing to hide here). If using differnet db add env vars here.
+Please find example .env in the repo (nothing to hide here). If using differnet db add env vars here.

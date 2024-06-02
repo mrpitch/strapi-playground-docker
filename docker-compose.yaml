@@ -43,7 +43,7 @@ services:
         - ./config:/usr/src/app/config
         - ./src:/usr/src/app/src
         - ./package.json:/usr/src/app/package.json
-        - ./.env.production:/usr/src/app/.env.production
+        - ./.env:/usr/src/app/.env
         # - ./public/uploads:/usr/src/app/public/uploads
       ports:
         - 1337:1337
