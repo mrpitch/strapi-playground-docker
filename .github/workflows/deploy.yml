@@ -26,28 +26,28 @@ jobs:
 
       - name: create .env file
         run: |
-          echo "#strapi app config" >> .env
-          echo "NODE_ENV=production" >> .env
-          echo "APP_KEYS=${{ vars.APP_KEYS }}" >> .env
-          echo "API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}" >> .env
-          echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> .env
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET}}" >> .env
-          echo "#postgres" >> .env
-          echo "DATABASE_CLIENT=${{ vars.DATABASE_CLIENT }}" >> .env
-          echo "DATABASE_HOST=${{ vars.DATABASE_HOST }}" >> .env
-          echo "DATABASE_PORT=${{ vars.DATABASE_PORT }}" >> .env
-          echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> .env
-          echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> .env
-          echo "DATABASE_NAME=${{ vars.DATABASE_NAME }}" >> .env
-          echo "DATABASE_SCHEMA=${{ vars.DATABASE_SCHEMA }}" >> .env
-          echo "DATABASE_SSL=${{ vars.DATABASE_SSL }}" >> .env
-          echo "#AWS S3" >> .env
-          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
-          echo "AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }}" >> .env
-          echo "AWS_BUCKET=${{ vars.AWS_BUCKET }}" >> .env
-          echo "AWS_REGION==${{ vars.AWS_REGION }}" >> .env
-          echo "CDN_URL=${{ vars.CDN_URL}}" >> .env
-          echo "CDN_ROOT_PATH=${{ vars.CDN_ROOT_PATH}}" >> .env
+          echo "#strapi app config" >> .env.production
+          echo "NODE_ENV=production" >> .env.production
+          echo "APP_KEYS=${{ vars.APP_KEYS }}" >> .env.production
+          echo "API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}" >> .env.production
+          echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> .env.production
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET}}" >> .env.production
+          echo "#postgres" >> .env.production
+          echo "DATABASE_CLIENT=${{ vars.DATABASE_CLIENT }}" >> .env.production
+          echo "DATABASE_HOST=${{ vars.DATABASE_HOST }}" >> .env.production
+          echo "DATABASE_PORT=${{ vars.DATABASE_PORT }}" >> .env.production
+          echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> .env.production
+          echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> .env.production
+          echo "DATABASE_NAME=${{ vars.DATABASE_NAME }}" >> .env.production
+          echo "DATABASE_SCHEMA=${{ vars.DATABASE_SCHEMA }}" >> .env.production
+          echo "DATABASE_SSL=${{ vars.DATABASE_SSL }}" >> .env.production
+          echo "#AWS S3" >> .env.production
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env.production
+          echo "AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }}" >> .env.production
+          echo "AWS_BUCKET=${{ vars.AWS_BUCKET }}" >> .env.production
+          echo "AWS_REGION==${{ vars.AWS_REGION }}" >> .env.production
+          echo "CDN_URL=${{ vars.CDN_URL}}" >> .env.production
+          echo "CDN_ROOT_PATH=${{ vars.CDN_ROOT_PATH}}" >> .env.production
       - name: Remove Network and delete Old Container
         run: |
           sudo docker-compose down -v
