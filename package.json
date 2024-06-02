@@ -40,6 +40,7 @@
     "@uiw/react-codemirror": "4.21.25",
     "codemirror": "5.65.16"
   },
+  "packageManager": "pnpm@9.1.4",
   "author": {
     "name": "mrpitch"
   },
