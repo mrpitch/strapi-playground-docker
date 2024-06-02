@@ -20,16 +20,10 @@ services:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
   prod:
-      # IMPORTNAT: Watch where you are: docker compose command is started in repo root,
-      # so you need to make sure you are in root for all turbo repo stuff (RUN Turbo prune ... etc.  see Dockerfile for details)
-      # and for all strapi stuff in this directory (./api/cms for .env., Dockerfile, etc.)
-      # env_file: .env.production
       build:
-        # here is the trick: running docker compose from monorepo root,
-        # you need to set the context  back to root (this docker-compose.yaml is under ./api/cms, context: ../../. - thats where the turbo repo stuff runs)
-        # and the reference to Dockerfile for strapi back to this dicrectory (dockerfile: ./api/cmas/Dockerfile)
         context: . 
         dockerfile: ./Dockerfile
+      # image: strapi-playground-prod
       container_name: strapi-playground-prod
       restart: unless-stopped
       environment:
