@@ -56,8 +56,8 @@ jobs:
       - name: Build and tag image
         id: build-image
         run: |
-            docker build -t ${{env.STRAPI_IMAGE}} .
-            docker build -t ${{env.NGINX_IMAGE}} ./nginx
+            sudo docker build -t ${{env.STRAPI_IMAGE}} .
+            sudo docker build -t ${{env.NGINX_IMAGE}} ./nginx
       - name: Run docker container
         run: |
           sudo docker-compose up -d
