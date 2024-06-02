@@ -5,7 +5,6 @@ services:
     build: ./nginx
     image: nginx-image
     ports:
-      - 1337:1337
       - 80:80
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/strapi.conf :ro
