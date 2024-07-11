@@ -24,6 +24,8 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@strapi/email": "5.0.0-rc.2",
+    "@strapi/plugin-documentation": "5.0.0-rc.2",
     "@strapi/plugin-graphql": "5.0.0-rc.2",
     "@strapi/plugin-users-permissions": "5.0.0-rc.2",
     "@strapi/strapi": "5.0.0-rc.2",
