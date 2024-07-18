@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "articles",
+  "collectionName": "categories",
   "info": {
-    "singularName": "article",
-    "pluralName": "articles",
-    "displayName": "Articles",
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "Categories",
     "description": ""
   },
   "options": {
@@ -22,7 +22,8 @@
           "localized": true
         }
       },
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "pluginOptions": {
@@ -31,13 +32,14 @@
         }
       },
       "type": "uid",
-      "targetField": "title"
+      "targetField": "title",
+      "required": true
     },
-    "category": {
+    "articles": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "articles"
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "category"
     }
   }
 }

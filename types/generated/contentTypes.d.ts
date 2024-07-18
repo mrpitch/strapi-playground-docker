@@ -5,7 +5,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   info: {
     singularName: 'article';
     pluralName: 'articles';
-    displayName: 'articles';
+    displayName: 'Articles';
     description: '';
   };
   options: {
@@ -17,13 +17,6 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    documentTitle: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     title: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -36,6 +29,50 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+  };
+}
+
+export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Categories';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'title'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -842,6 +879,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ContentTypeSchemas {
       'api::article.article': ApiArticleArticle;
+      'api::category.category': ApiCategoryCategory;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
