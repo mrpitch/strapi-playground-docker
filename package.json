@@ -4,7 +4,7 @@
   "version": "0.1.1",
   "description": "Strapi Playground for testing features",
   "scripts": {
-    "start:dev": "ENV_PATH=.env.development strapi develop",
+    "start:dev": "ENV_PATH=.env.development strapi develop --debug",
     "build:dev": "ENV_PATH=.env.development strapi build",
     "start:supabase": "ENV_PATH=.env.supabase strapi develop",
     "build:supabase": "ENV_PATH=.env.supabase strapi build",
@@ -24,16 +24,17 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@strapi/email": "5.0.0-rc.4",
-    "@strapi/plugin-documentation": "5.0.0-rc.4",
-    "@strapi/plugin-graphql": "5.0.0-rc.4",
-    "@strapi/plugin-users-permissions": "5.0.0-rc.4",
-    "@strapi/strapi": "5.0.0-rc.4",
-    "@strapi/upload": "5.0.0-rc.4",
+    "@strapi/email": "5.0.0-rc.2",
+    "@strapi/plugin-documentation": "5.0.0-rc.2",
+    "@strapi/plugin-graphql": "5.0.0-rc.2",
+    "@strapi/plugin-users-permissions": "5.0.0-rc.2",
+    "@strapi/strapi": "5.0.0-rc.2",
+    "@strapi/upload": "5.0.0-rc.2",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
+    "strapi-plugin-config-sync": "2.0.0-beta.3",
     "styled-components": "^6.0.0"
   },
   "author": {
