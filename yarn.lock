@@ -10500,10 +10500,10 @@ statuses@2.0.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==
 
-strapi-plugin-config-sync@2.0.0-beta.3:
-  version "2.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/strapi-plugin-config-sync/-/strapi-plugin-config-sync-2.0.0-beta.3.tgz#aff6c58ab0fc5da6e7e3e5690caf85f7aa138ea2"
-  integrity sha512-scA0FnWL/qR2cfcEcskH6948OUJXjUjj3KE+f27Fjy4P0Qq9e8os+zQ0HW2RAn6a167C0mb+9BmXxwIXweT9yA==
+strapi-plugin-config-sync@2.0.0-beta.4:
+  version "2.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-config-sync/-/strapi-plugin-config-sync-2.0.0-beta.4.tgz#c21ef32a50d285b7c3f90608023fbfd501a50abd"
+  integrity sha512-EWsRquR1FdihwcRDlhx47RB2CuxWkS959wsf9DAdUX3KM+bA7Mdd3QJmDAR4GT/9pgArDXdVrZcIoipFD7g4ag==
   dependencies:
     chalk "^4.1.2"
     cli-table "^0.3.6"
