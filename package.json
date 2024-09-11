@@ -35,7 +35,9 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "strapi-plugin-config-sync": "2.0.0-beta.4",
-    "styled-components": "^6.0.0"
+    "styled-components": "^6.0.0",
+    "upload-image-optimizer": "link:src/plugins/upload-image-optimizer"
+
   },
   "author": {
     "name": "mrpitch"

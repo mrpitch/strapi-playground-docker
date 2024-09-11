@@ -1,0 +1,47 @@
+{
+  "name": "upload-image-optimizer",
+  "version": "0.0.0",
+  "description": "Plugin for strap v5 to optimize images on upload. Based on https://github.com/marlokessler/strapi-plugin-image-optimizer",
+  "keywords": [],
+  "license": "MIT",
+  "author": "mrpitch <mrpitch@outlook.com>",
+  "type": "commonjs",
+  "exports": {
+    "./package.json": "./package.json",
+    "./strapi-server": {
+      "types": "./dist/server/src/index.d.ts",
+      "source": "./server/src/index.ts",
+      "import": "./dist/server/index.mjs",
+      "require": "./dist/server/index.js",
+      "default": "./dist/server/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "strapi-plugin build",
+    "test:ts:back": "run -T tsc -p server/tsconfig.json",
+    "verify": "strapi-plugin verify",
+    "watch": "strapi-plugin watch",
+    "watch:link": "strapi-plugin watch:link"
+  },
+  "devDependencies": {
+    "@strapi/sdk-plugin": "^5.2.2",
+    "@strapi/strapi": "^5.0.0-rc.20",
+    "@strapi/typescript-utils": "^5.0.0-rc.20",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2"
+  },
+  "peerDependencies": {
+    "@strapi/sdk-plugin": "^5.2.2",
+    "@strapi/strapi": "^5.0.0-rc.20",
+    "yup": "^1.4.0"
+  },
+  "strapi": {
+    "kind": "plugin",
+    "name": "upload-image-optimizer",
+    "displayName": "Upload Image optimize",
+    "description": "Plugin for strap v5 to optimize images on upload. Based on https://github.com/marlokessler/strapi-plugin-image-optimizer"
+  }
+}
