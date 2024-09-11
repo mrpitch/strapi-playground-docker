@@ -24,12 +24,12 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@strapi/email": "5.0.0-rc.12",
-    "@strapi/plugin-documentation": "5.0.0-rc.12",
-    "@strapi/plugin-graphql": "5.0.0-rc.12",
-    "@strapi/plugin-users-permissions": "5.0.0-rc.12",
-    "@strapi/strapi": "5.0.0-rc.12",
-    "@strapi/upload": "5.0.0-rc.12",
+    "@strapi/email": "5.0.0-rc.20",
+    "@strapi/plugin-documentation": "5.0.0-rc.20",
+    "@strapi/plugin-graphql": "5.0.0-rc.20",
+    "@strapi/plugin-users-permissions": "5.0.0-rc.20",
+    "@strapi/strapi": "5.0.0-rc.20",
+    "@strapi/upload": "5.0.0-rc.20",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -43,6 +43,7 @@
   "strapi": {
     "uuid": "0355bba6-96a0-42c4-81cd-3c6cccaf25fa"
   },
+  "packageManager": "yarn@1.22.19",
   "engines": {
     "node": ">=18.x.x <=20.x.x"
   },
