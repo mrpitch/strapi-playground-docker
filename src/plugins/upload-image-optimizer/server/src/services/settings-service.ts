@@ -1,4 +1,3 @@
-import {} from "@strapi/strapi";
 import { Config } from "../models";
 import pluginId from "../utils/pluginId";
 

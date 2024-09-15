@@ -4,7 +4,7 @@
   "version": "0.1.1",
   "description": "Strapi Playground for testing features",
   "scripts": {
-    "start:dev": "ENV_PATH=.env.development strapi develop",
+    "start:dev": "ENV_PATH=.env.development strapi develop --debug",
     "build:dev": "ENV_PATH=.env.development strapi build",
     "start:supabase": "ENV_PATH=.env.supabase strapi develop",
     "build:supabase": "ENV_PATH=.env.supabase strapi build",
@@ -18,26 +18,28 @@
     "prod:docker": "docker compose -f docker-compose.yaml --env-file .env.production up -d"
   },
   "devDependencies": {
+    "@strapi/sdk-plugin": "^5.2.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "typescript": "^5"
   },
   "dependencies": {
-    "@strapi/email": "5.0.0-rc.20",
-    "@strapi/plugin-documentation": "5.0.0-rc.20",
-    "@strapi/plugin-graphql": "5.0.0-rc.20",
-    "@strapi/plugin-users-permissions": "5.0.0-rc.20",
-    "@strapi/strapi": "5.0.0-rc.20",
-    "@strapi/upload": "5.0.0-rc.20",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@strapi/email": "5.0.0-rc.23",
+    "@strapi/plugin-documentation": "5.0.0-rc.23",
+    "@strapi/plugin-graphql": "5.0.0-rc.23",
+    "@strapi/plugin-users-permissions": "5.0.0-rc.23",
+    "@strapi/strapi": "5.0.0-rc.23",
+    "@strapi/upload": "5.0.0-rc.23",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
+    "sharp": "^0.33.5",
     "strapi-plugin-config-sync": "2.0.0-beta.4",
     "styled-components": "^6.0.0",
     "upload-image-optimizer": "link:src/plugins/upload-image-optimizer"
-
   },
   "author": {
     "name": "mrpitch"
