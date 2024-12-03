@@ -1,0 +1,36 @@
+{
+  "key": "plugin_responsive-image_settings",
+  "value": {
+    "formats": [
+      {
+        "name": "large",
+        "width": 1000,
+        "fit": "cover",
+        "position": "centre",
+        "withoutEnlargement": false,
+        "convertToFormat": ""
+      },
+      {
+        "name": "medium",
+        "width": 750,
+        "fit": "cover",
+        "position": "centre",
+        "withoutEnlargement": false,
+        "convertToFormat": ""
+      },
+      {
+        "name": "small",
+        "width": 500,
+        "fit": "cover",
+        "position": "centre",
+        "withoutEnlargement": false,
+        "convertToFormat": ""
+      }
+    ],
+    "quality": 87,
+    "progressive": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}
