@@ -5,8 +5,8 @@
 ## ubuntu base with nodejs coppied in from official image, for a more secure base
 ###
 #cache our node version for installing later
-FROM node:20-bullseye-slim as node
-FROM ubuntu:focal-20230126 as base
+FROM node:20-bullseye-slim AS node
+FROM ubuntu:focal-20230126 AS base
 
 # new way to get node, let's copy in the specific version we want from a docker image
 # this avoids depdency package installs (python3) that the deb package requires
@@ -23,13 +23,12 @@ RUN groupadd --gid 1000 node \
     && chown -R node:node /app
 
 # copy all stuff needed, install & build
-FROM base as prod
+FROM base AS prod
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
-EXPOSE 1337
 WORKDIR /app
 COPY . .
-RUN pnpm install 
+RUN pnpm install --prod --frozen-lockfile
 RUN pnpm build:prod
 
 #run it

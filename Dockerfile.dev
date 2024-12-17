@@ -5,8 +5,8 @@
 ## ubuntu base with nodejs coppied in from official image, for a more secure base
 ###
 #cache our node version for installing later
-FROM node:20-bullseye-slim as node
-FROM ubuntu:focal-20230126 as base
+FROM node:20-bullseye-slim AS node
+FROM ubuntu:focal-20230126 AS base
 
 # new way to get node, let's copy in the specific version we want from a docker image
 # this avoids depdency package installs (python3) that the deb package requires
@@ -24,7 +24,7 @@ RUN groupadd --gid 1000 node \
     && chown -R node:node /app
 
 # run turbo prune to create strapi instance form monorepo and copy everything in next step
-FROM base as build
+FROM base AS build
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 EXPOSE 1337
@@ -32,7 +32,7 @@ WORKDIR /app
 COPY  . .
 
 RUN pnpm install  
-#RUN pnpm build:dev
+RUN pnpm build:dev
 
 #run it
 CMD ["pnpm", "start:dev"]
