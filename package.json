@@ -24,12 +24,12 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@strapi/email": "5.4.2",
-    "@strapi/plugin-documentation": "5.4.2",
-    "@strapi/plugin-graphql": "5.4.2",
-    "@strapi/plugin-users-permissions": "5.4.2",
-    "@strapi/strapi": "5.4.2",
-    "@strapi/upload": "5.4.2",
+    "@strapi/email": "5.5.2",
+    "@strapi/plugin-documentation": "5.5.2",
+    "@strapi/plugin-graphql": "5.5.2",
+    "@strapi/plugin-users-permissions": "5.5.2",
+    "@strapi/strapi": "5.5.2",
+    "@strapi/upload": "5.5.2",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
