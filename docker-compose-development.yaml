@@ -1,30 +1,4 @@
 services:
-  strapi_dev:
-      build: 
-        context: . 
-        dockerfile: ./Dockerfile.dev
-      container_name: strapi-playground-dev
-      restart: unless-stopped
-      environment:
-        NODE_ENV: development
-        DATABASE_CLIENT: ${DATABASE_CLIENT}
-        DATABASE_HOST: ${DATABASE_HOST}
-        DATABASE_PORT: 5432
-        DATABASE_NAME: ${DATABASE_NAME}
-        DATABASE_USERNAME: ${DATABASE_USERNAME}
-        DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      volumes:
-        - ./config:/config
-        - ./src:/src
-        - ./package.json:/package.json
-        - ./.env.development:/.env.development
-        - ./public/uploads:/public/uploads
-      ports:
-        - 1337:1337
-      networks:
-      - strapi_playground
-      depends_on:
-        - db_strapi_dev
   db_strapi_dev:
     container_name: strapi-playground-db-dev
     image: 'postgres:15.1'
@@ -38,13 +12,7 @@ services:
       #- ./database/oegd_example_latest.sql.gz:/docker-entrypoint-initdb.d/oegd_example_latest.sql.gz
     ports:
       - "5432:5432"
-    networks:
-      - strapi_playground
 
 volumes:
   db_strapi_dev:
 
-networks:
-  strapi_playground:
-    name: Strapi_Playground
-    driver: bridge

@@ -1,35 +1,34 @@
-###
-## for referece please see https://github.com/BretFisher/nodejs-rocks-in-docker/blob/main/dockerfiles/ubuntu-copy.Dockerfile
-###
-###
-## ubuntu base with nodejs coppied in from official image, for a more secure base
-###
-#cache our node version for installing later
-FROM node:20-bullseye-slim AS node
-FROM ubuntu:focal-20230126 AS base
+#FROM node:20-bullseye-slim AS base
+FROM node:20-alpine AS base
 
-# new way to get node, let's copy in the specific version we want from a docker image
-# this avoids depdency package installs (python3) that the deb package requires
-COPY --from=node /usr/local/include/ /usr/local/include/
-COPY --from=node /usr/local/lib/ /usr/local/lib/
-COPY --from=node /usr/local/bin/ /usr/local/bin/
-# ensures we fix symlinks for npx, yarn and PnPm
-RUN corepack disable && corepack enable
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
-# create node user and group, then create app dir
-RUN groupadd --gid 1000 node \
-    && useradd --uid 1000 --gid node --shell /bin/bash --create-home node \
-    && mkdir /app \
-    && chown -R node:node /app
-
-# copy all stuff needed, install & build
-FROM base AS prod
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app
 COPY . .
-RUN pnpm install --prod --frozen-lockfile
+
+# FROM base AS prod-deps
+# ARG NODE_ENV=production
+# ENV NODE_ENV=${NODE_ENV}
+# RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+
+# FROM base AS build
+# ARG NODE_ENV=production
+# ENV NODE_ENV=${NODE_ENV}
+# RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+# RUN pnpm build:prod  
+FROM base AS build
+WORKDIR /app
+COPY ./pnpm-lock.yaml .
+RUN pnpm fetch --prod
 RUN pnpm build:prod
 
-#run it
-CMD ["pnpm", "start:prod"]
+ 
+# copy all stuff needed, install & build
+FROM base
+COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/dist /app/dist 
+
+EXPOSE 1337
+CMD [ "pnpm", "start:prod" ]
