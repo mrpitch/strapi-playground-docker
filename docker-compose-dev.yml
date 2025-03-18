@@ -1,7 +1,11 @@
+
+volumes:
+  db_strapi_dev:
+
 services:
   db_strapi_dev:
     container_name: strapi-playground-db-dev
-    image: 'postgres:15.1'
+    image: 'postgres:15.6'
     env_file: .env.development
     environment:
       - POSTGRES_DB=${DATABASE_NAME}
@@ -12,7 +16,4 @@ services:
       #- ./database/oegd_example_latest.sql.gz:/docker-entrypoint-initdb.d/oegd_example_latest.sql.gz
     ports:
       - "5432:5432"
-
-volumes:
-  db_strapi_dev:
 

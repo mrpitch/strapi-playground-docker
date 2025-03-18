@@ -1,34 +1,45 @@
-#FROM node:20-bullseye-slim AS base
+# Use Node Alpine Linux as base image
 FROM node:20-alpine AS base
 
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-WORKDIR /app
+RUN apk update && apk upgrade && apk cache purge && apk cache clean && rm -rf /var/cache/apk
+
+# Create a non-root user
+RUN addgroup -S strapi && adduser -S strapi -G strapi
+
+FROM base AS builder
+
+# Copy package.json and package-lock.json
+COPY package*.json yarn.lock ./
+
+# Install dependencies
+RUN yarn install --prod
+
+# Copy the rest of the application code
 COPY . .
 
-# FROM base AS prod-deps
-# ARG NODE_ENV=production
-# ENV NODE_ENV=${NODE_ENV}
-# RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
-
-# FROM base AS build
-# ARG NODE_ENV=production
-# ENV NODE_ENV=${NODE_ENV}
-# RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
-# RUN pnpm build:prod  
-FROM base AS build
-WORKDIR /app
-COPY ./pnpm-lock.yaml .
-RUN pnpm fetch --prod
-RUN pnpm build:prod
-
- 
-# copy all stuff needed, install & build
-FROM base
-COPY --from=build /app/node_modules /app/node_modules
-COPY --from=build /app/dist /app/dist 
-
+# Expose port 1337 for the Strapi server
 EXPOSE 1337
-CMD [ "pnpm", "start:prod" ]
+
+# Set environment variables
+ENV NODE_ENV=production
+
+# Run Strapi build command
+RUN yarn build:prod
+
+# Change ownership of the application directory to the non-root user
+RUN chown -R strapi:strapi /usr/src/app
+
+FROM base
+
+RUN mkdir -p /usr/src/app && chown strapi:strapi /usr/src/app
+
+COPY --from=builder /usr/src/app /usr/src/app/
+
+# Switch to the non-root user
+USER strapi
+
+# Start the Strapi server
+CMD ["yarn", "start:prod"]

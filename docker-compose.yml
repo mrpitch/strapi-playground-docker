@@ -1,8 +1,12 @@
 services:
   strapi_prod:
-      container_name: strapi-playground-prod_v1.0
-      build: .
-      restart: unless-stopped
+      container_name: strapi-playground-prod
+      build:
+       context: ./
+       dockerfile: ./Dockerfile
+      # restart: unless-stopped
+      env_file:
+        - .env.prod
       environment:
         NODE_ENV: production
         DATABASE_CLIENT: ${DATABASE_CLIENT}
@@ -11,23 +15,15 @@ services:
         DATABASE_NAME: ${DATABASE_NAME}
         DATABASE_USERNAME: ${DATABASE_USERNAME}
         DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      volumes:
-        - ./config:/usr/src/app/config
-        - ./src:/usr/src/app/src
-        - ./package.json:/usr/src/app/package.json
-        - ./pnpm-lock.yaml:/usr/src/app/pnpm-lock.yaml
-        - ./.env.production:/usr/src/app/.env.production
-        - ./public/uploads:/usr/src/app/public/uploads
       ports:
         - 1337:1337
-      networks:
-      - strapi_playground
       depends_on:
         - db_strapi_prod
   db_strapi_prod:
     container_name: strapi-playground-db-prod
-    image: 'postgres:15.1'
-    env_file: .env.production
+    image: 'postgres:15.6'
+    env_file:
+      - .env.prod
     environment:
       - POSTGRES_DB=${DATABASE_NAME}
       - POSTGRES_USER=${DATABASE_USERNAME}
@@ -37,13 +33,7 @@ services:
       #- ./database/db_strapi_latest.sql.gz:/docker-entrypoint-initdb.d/db_strapi_latest.sql.gz
     ports:
       - "5432:5432"
-    networks:
-      - strapi_playground
 
 volumes:
   db_strapi_prod:
 
-networks:
-  strapi_playground:
-    name: Strapi_Playground
-    driver: bridge
